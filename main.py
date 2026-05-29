@@ -34,7 +34,7 @@ async def check_url(
         result["response_ms"] = round((time.time() - start) * 1000, 1)
         result["headers"] = dict(resp.headers)
         ct = resp.headers.get("Content-Type", "")
-        content = resp.read(10000).decode("utf-8", errors="replace")
+        content = resp.read(50000).decode("utf-8", errors="replace")
         result["content_length"] = int(resp.headers.get("Content-Length", 0))
         title_m = re.search(r"<title>(.+?)</title>", content, re.I)
         result["title"] = title_m.group(1) if title_m else ""
