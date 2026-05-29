@@ -103,7 +103,7 @@ code{display:block;background:#0f172a;padding:14px;border-radius:8px;margin:12px
 <div id="result"></div>
 <code>GET /api/check?url=https://github.com&format=json</code></div>
 <div class="pricing"><div class="plan"><h3>Free</h3><div class="price">$0</div><p>500 checks/day</p><a href="https://6770028436142.gumroad.com/l/jkpxgs" target="_blank" style="display:block;margin-top:12px;padding:10px;background:#38bdf8;color:#000;border-radius:8px;text-decoration:none;font-weight:600">Get Started Free</a></div>
-<div class="plan"><h3>Pro</h3><div class="price">$9</div><p>Unlimited checks</p><a href="https://6770028436142.gumroad.com/l/jkpxgs" target="_blank" style="display:block;margin-top:12px;padding:10px;background:linear-gradient(135deg,#38bdf8,#818cf8);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Buy Now — $9</a></div></div>
+<div class="plan"><h3>Pro</h3><div class="price">$1</div><p>Unlimited checks</p><a href="https://6770028436142.gumroad.com/l/jkpxgs" target="_blank" style="display:block;margin-top:12px;padding:10px;background:linear-gradient(135deg,#38bdf8,#818cf8);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Buy Now — $1</a></div></div>
 <script>
 async function check(){var url=document.getElementById('url').value;var rdiv=document.getElementById('result');rdiv.style.display='block';rdiv.textContent='Analyzing...';
 var r=await fetch('/api/check?url='+encodeURIComponent(url));var d=await r.json();
