@@ -17,7 +17,7 @@ CACHE = {}
 @app.get("/api/check")
 async def check_url(
     url: str = Query(..., description="URL to analyze"),
-    format: str = Query("json", regex="^(json|html|text)$"),
+    format: str = Query("json", pattern="^(json|html|text)$"),
 ):
     cache_key = f"{url}|{format}"
     if cache_key in CACHE and time.time() - CACHE[cache_key]["ts"] < 300:
@@ -62,7 +62,8 @@ async def check_url(
     CACHE[cache_key] = {"data": result, "ts": time.time()}
 
     if format == "html":
-        return HTMLResponse(f"<pre>{__import__('json').dumps(result, indent=2)}</pre>")
+        import json
+        return HTMLResponse(f"<pre>{json.dumps(result, indent=2)}</pre>")
     return result
 
 
