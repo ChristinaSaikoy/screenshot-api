@@ -36,8 +36,10 @@ async def check_url(
         ct = resp.headers.get("Content-Type", "")
         content = resp.read(10000).decode("utf-8", errors="replace")
         result["content_length"] = int(resp.headers.get("Content-Length", 0))
-        result["title"] = re.search(r"<title>(.+?)</title>", content, re.I)?.group(1) or ""
-        result["meta_desc"] = re.search(r'<meta[^>]+name="description"[^>]+content="([^"]+)"', content, re.I)?.group(1) or ""
+        title_m = re.search(r"<title>(.+?)</title>", content, re.I)
+        result["title"] = title_m.group(1) if title_m else ""
+        desc_m = re.search(r'<meta[^>]+name="description"[^>]+content="([^"]+)"', content, re.I)
+        result["meta_desc"] = desc_m.group(1) if desc_m else ""
     except URLError as e:
         result["error"] = str(e.reason)[:200] if e.reason else str(e)[:200]
     except Exception as e:
