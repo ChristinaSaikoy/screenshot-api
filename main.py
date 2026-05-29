@@ -24,7 +24,10 @@ async def screenshot(
     try:
         from playwright.async_api import async_playwright
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-setuid-sandbox"])
+            browser = await p.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
+            )
             ctx_kwargs = {"viewport": {"width": width, "height": height}}
             if dark_mode:
                 ctx_kwargs["color_scheme"] = "dark"
